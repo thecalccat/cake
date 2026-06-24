@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Me · Ink by B. Cake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<style>
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start;}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+/* .about-photos{display:grid;grid-template-columns:1fr 1fr;column-gap:25px;row-gap: 300px;} */
+.about-photos{display:grid;grid-template-columns:1fr 1fr;gap:25px;}
+.about-photos .photoslot:first-child{grid-column:1/-1;aspect-ratio:4/3;}
+.lead{font-size:19px;color:var(--ink-soft);}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
+.pill{background:var(--grad-card-soft);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-weight:800;font-size:13px;}
+</style>
+</head>
+<body class="themed">
+<div class="toprule"></div>
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><img src="logo.png" alt="" />B. Cake</a>
+    <button class="nav-toggle" aria-label="Menu"></button>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html" class="active">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="get-inked.html" class="ink">Get Inked</a>
+      <a href="aftercare.html">Aftercare</a>
+      <a href="merch.html">Merch</a>
+      <a href="location.html">Location &amp; Events</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+  <div class="page-head">
+    <div class="eyebrow">Tattoo Artist</div>
+    <h1>About Me</h1>
+  </div>
+
+  <div class="about-grid">
+    <div>
+      <!-- [EDIT-BIO] Write your real blurb here -->
+      <p class="lead"> <b>Hi there! </b> My name is Hannah, but most people call me <b>Cake</b> &#129655 </p>
+      <p>I'm a Knoxville native, having graduated from Oak Ridge HS and UTK for my bachelor's. 
+        I met my husband Vinny in high school and he my biggest supporter in all I do. He even moved all the way to Nebraska with me for my first job!
+      That's where I ended up getting my start in tattooing back in 2021. After several years, I was finally able to move back to Tennessee in 2025 to be with Vinny while he finishes his PhD at UTK.</p>
+      <p>For tattooing, while I am versatile enough to tackle almost any style, my true specialties are <b>Color Realism</b> - specifically jewels and moody, classic oil paintings - 
+        and bold color <b>Neo-Traditional</b> pieces. I'd love to do more of both!</p>
+        <p>When I'm not at the studio, you can usually find me at home drawing designs for your next appointment while cuddling with my cat, Dumpling. To unwind, I'm almost always either 
+          rewatching <i>It's Always Sunny in Philadelphia</i> - for the hundredth time - or getting lost in a video game like <i> Pok&eacute;mon</i> or <i>Red Dead Redemption 2.</i></p>
+          <p><i><b>PS...</b> I am always open to trading tattoo services for rare Pok&eacute;mon cards. Gotta Catch 'em all, am I right?</i></p>
+
+
+      <div class="pill-row">
+        <span class="pill"> Color</span>
+        <span class="pill"> Realism</span>
+        <span class="pill"> Neo-Traditional</span>
+        <span class="pill"> First-timer friendly</span>
+      </div>
+
+      <p style="margin-top:22px">
+        <a class="btn btn-ink" href="get-inked.html">Get Inked</a>
+        <a class="btn btn-ghost" href="gallery.html" style="margin-left:8px">See the gallery</a>
+      </p>
+    </div>
+
+    <div class="about-photos">
+      <!-- Drop real photos in this folder named about-1.jpg, about-2.jpg, about-3.jpg -->
+      <div class="photoslot" id="ap1"> </div>
+      <div class="photoslot" id="ap2"> </div>
+      <div class="photoslot" id="ap3"> </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-in">
+    <div>
+      <div style="font-family:var(--font-display);font-weight:700;color:#fff;font-size:18px;display:flex;align-items:center;gap:8px"><img src="logo.png" style="width:26px" alt="" /> Ink by B. Cake</div>
+      <div style="color:#9a93a0;font-size:13px;margin-top:4px">4320 Ball Camp Pike, Suite 6S · Knoxville, TN 37921</div>
+      <div class="foot-links">
+        <a href="https://docs.google.com/document/d/10L4yiTu3bysWRlOUiNJvsqtmBvopwI53ArUv1BGn_O8/edit?tab=t.0" title="terms of service" target="_blank" rel="noopener">Terms of Service</a>
+        · <a href="https://www.flaticon.com/free-icons/socialmedia" title="socialmedia icons" target="_blank" rel="noopener" class="icon-attr">Socialmedia icons created by fauzin idea - Flaticon</a>
+      </div>
+    </div>
+    <div class="socials">
+      <a href="https://instagram.com/inkbybcake" target="_blank" rel="noopener" aria-label="Instagram"><img src="instagram.png" alt="Instagram" onerror="this.outerHTML='IG'" /></a>
+      <a href="https://facebook.com/inkbybcake" target="_blank" rel="noopener" aria-label="Facebook"><img src="facebook.png" alt="Facebook" onerror="this.outerHTML='f'" /></a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+// swap placeholders for real photos if present
+[['ap1','about-1.jpg'],['ap2','about-2.jpg'],['ap3','about-3.jpg']].forEach(([id,src])=>{
+  const cell=document.getElementById(id);const img=new Image();
+  img.onload=()=>{cell.style.padding='0';cell.style.border='none';img.style.width='100%';img.style.height='100%';
+    img.style.objectFit='cover';img.style.borderRadius='14px';cell.innerHTML='';cell.appendChild(img);};
+  img.src=src;img.alt='';
+});
+</script>
+</body>
+</html>

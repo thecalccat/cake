@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Get Inked · Ink by B. Cake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<style>
+.form-card{max-width:640px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;}
+.form-card .head{background:var(--grad-card);padding:18px 22px;}
+.form-card .head h1{font-size:24px;margin:0;}
+.form-card .body{padding:22px;}
+.qstep{display:none;}
+.qstep.show{display:block;animation:fadeUp .3s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.qstep h2{font-size:21px;margin:.1em 0 .5em;}
+.qstep .q-sub{color:var(--muted);font-size:14px;margin-top:-4px;margin-bottom:14px;}
+.nav-row{display:flex;justify-content:space-between;gap:12px;margin-top:22px;}
+.sizecard{display:flex;align-items:center;gap:14px;text-align:left;}
+.sizecard .big{font-size:26px;}
+.sizecard .t{font-weight:800;}
+.sizecard .s{font-size:13px;color:var(--muted);}
+.examples{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0;}
+.ex{border-radius:12px;padding:10px;text-align:center;font-weight:800;font-size:13px;}
+.ex.good{background:#eafaef;border:1.5px solid #aee3bf;color:#1f7a3d;}
+.ex.bad{background:#fdeeee;border:1.5px solid #f1b9b9;color:#a83232;}
+.ex .demo{aspect-ratio:1/1;border-radius:8px;margin-bottom:6px;display:grid;place-items:center;font-size:30px;background:#fff;}
+.review-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.rpill{background:var(--cloud);border:1px solid var(--line);border-radius:16px;padding:8px 13px;font-size:14px;display:inline-flex;gap:8px;align-items:baseline;max-width:100%;}
+.rpill .k{font-weight:800;color:var(--ink);white-space:nowrap;}
+.rpill .v{color:var(--text);font-weight:600;word-break:break-word;}
+.rpill.editable{cursor:pointer;transition:border-color .12s,box-shadow .12s;}
+.rpill.editable:hover{border-color:var(--pink);box-shadow:0 0 0 3px rgba(239,121,184,.15);}
+</style>
+</head>
+<body class="themed">
+<div class="toprule"></div>
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><img src="logo.png" alt="" />B. Cake</a>
+    <button class="nav-toggle" aria-label="Menu"></button>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="get-inked.html" class="ink active">Get Inked</a>
+      <a href="aftercare.html">Aftercare</a>
+      <a href="merch.html">Merch</a>
+      <a href="location.html">Location &amp; Events</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+  <div class="form-card">
+    <div class="head">
+      <h1>Get Inked</h1>
+      <div class="progress" style="margin-top:12px"><span id="bar"></span></div>
+      <div class="steplabel" id="stepLabel" style="margin-bottom:0;text-align:left"></div>
+    </div>
+    <div class="body">
+      <form id="inkForm" novalidate>
+
+        <!-- 0 · consultation -->
+        <section class="qstep show">
+          <h2>Do you want an in-person consultation?</h2>
+          <p class="q-sub">A free sit-down to talk through your idea before booking. (Required for some tattoos - I'll flag those when I review your submisison.)</p>
+          <div class="opt-list" data-radio="consult">
+            <label class="opt"><input type="radio" name="consult" value="Yes" /> Yes, I'd like a consult</label>
+            <label class="opt"><input type="radio" name="consult" value="No" /> No, let's get to booking</label>
+          </div>
+        </section>
+
+        <!-- 1 · name -->
+        <section class="qstep">
+          <h2>What's your name?</h2>
+          <div class="row2">
+            <div class="field"><label>First name <span class="req">*</span></label><input name="first" autocomplete="given-name" /></div>
+            <div class="field"><label>Last name <span class="req">*</span></label><input name="last" autocomplete="family-name" /></div>
+          </div>
+        </section>
+
+        <!-- 2 · phone -->
+        <section class="qstep">
+          <h2>Phone number</h2>
+          <p class="q-sub">Used for appointment reminders.</p>
+          <div class="field"><input name="phone" type="tel" autocomplete="tel" placeholder="(555) 555-5555" /></div>
+        </section>
+
+        <!-- 3 · email -->
+        <section class="qstep">
+          <h2>Email address</h2>
+          <p class="q-sub">Used for correspondence about design and appointment date.</p>
+          <div class="field"><input name="email" type="email" autocomplete="email" placeholder="you@email.com" /></div>
+        </section>
+
+        <!-- 4 · idea -->
+        <section class="qstep">
+          <h2>Describe your tattoo idea</h2>
+          <p class="q-sub">Include what you like from any reference photos you'll add on the next step.</p>
+          <div class="field"><textarea name="idea" placeholder="e.x. A cute color piece of my cat as a Pokémon, soft shading, on my forearm…"></textarea></div>
+        </section>
+
+        <!-- 5 · reference photos -->
+        <section class="qstep">
+          <h2>Reference photos</h2>
+          <p class="q-sub">Add up to 5 images that inspire your idea.</p>
+          <div class="uploader" id="refUploader">
+            <div> <b>Tap to add photos</b> or drag &amp; drop<br><small class="muted">up to 5 · jpg/png</small></div>
+            <input type="file" accept="image/*" multiple hidden id="refInput" />
+          </div>
+          <div class="previews" id="refPreviews"></div>
+          <label class="check" style="margin-top:12px"><input type="checkbox" id="refSkip" /> I don't have any reference photos</label>
+        </section>
+
+        <!-- 6 · coloring -->
+        <section class="qstep">
+          <h2>Tattoo coloring</h2>
+          <div class="opt-list" data-radio="color">
+            <label class="opt"><input type="radio" name="color" value="Full Color" /> Full Color</label>
+            <label class="opt"><input type="radio" name="color" value="Black & Gray" /> Black &amp; Gray</label>
+            <label class="opt"><input type="radio" name="color" value="Combination" /> Combination</label>
+            <label class="opt"><input type="radio" name="color" value="Undecided" /> Undecided</label>
+          </div>
+        </section>
+
+        <!-- size -->
+        <section class="qstep">
+          <h2>Tattoo size estimate</h2>
+          <p class="q-sub">Choose the "up to" size closest to what you want.</p>
+          <div class="opt-list" id="sizeList" data-radio="size">
+            <label class="opt sizecard"><input type="radio" name="size" value="Small - up to a credit card (2-4 in)" /><span class="big"></span><span><span class="t">Small</span><br><span class="s">Up to a credit card · 2-4 inches</span></span></label>
+            <label class="opt sizecard"><input type="radio" name="size" value="Medium - up to a postcard (4-6 in)" /><span class="big"></span><span><span class="t">Medium</span><br><span class="s">Up to a postcard · 4-6 inches</span></span></label>
+            <label class="opt sizecard"><input type="radio" name="size" value="Large - up to printer paper (6-10 in)" /><span class="big"></span><span><span class="t">Large</span><br><span class="s">Up to printer paper · 6-10 inches</span></span></label>
+            <label class="opt sizecard"><input type="radio" name="size" value="X-Large - larger than paper (10+ in)" /><span class="big"></span><span><span class="t">X-Large</span><br><span class="s">Larger than paper · 10+ inches</span></span></label>
+          </div>
+          <div class="callout warn" id="xlWarn" style="display:none"> <span><b>In-person consultations are required for X-Large tattoos.</b> I'll reach out to schedule one.</span></div>
+          <h3>Note: In an effort to get you a faster response regarding your appointment, please try to give a more approximate size of the tattoo you want (in inches).</h3>
+        <div class="row2" style="margin-top:6px">
+          <div class="field"><label for="length">Height (in)</label>
+            <select name="length" id="length"><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option value="15+">15+</option></select></div>
+          <div class="field"><label for="width">Width (in)</label>
+            <select name="width" id="width"><option value="">Select</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option value="15+">15+</option></select></div>
+        </div>
+        
+        
+        </section>
+
+        <!-- 9 · location -->
+        <section class="qstep">
+          <h2>Tattoo location</h2>
+          <p class="q-sub">Tap where you'd like it. Use the flip button to see the back. Add as many spots as you need.</p>
+          <div class="bodymap-wrap">
+            <div class="bm-tabs">
+              <button type="button" class="bm-tab active" data-side="Front">Front</button>
+              <button type="button" class="bm-tab" data-side="Back">Back</button>
+            </div>
+            <div class="bm-figure" id="bmFigure"></div>
+            <div class="bm-readout" id="bmReadout"><span class="none">No location selected yet - tap the body above.</span></div>
+          </div>
+        </section>
+
+        <!-- 10 · coverup -->
+        <section class="qstep">
+          <h2>Will this be a cover-up?</h2>
+          <p class="q-sub">Covering or reworking an existing tattoo.</p>
+          <div class="opt-list" data-radio="coverup">
+            <label class="opt"><input type="radio" name="coverup" value="No" /> No</label>
+            <label class="opt"><input type="radio" name="coverup" value="Yes" /> Yes</label>
+          </div>
+          <div class="callout warn" id="coverWarn" style="display:none"> <span><b>In-person consultations are required for cover-ups.</b> I'll reach out to schedule one.</span></div>
+        </section>
+
+        <!-- 11 · location photos -->
+        <section class="qstep">
+          <h2>Photo of the tattoo location</h2>
+          <p class="q-sub">Take it straight-on with good lighting. No selfie-camera or mirror pics - it's easiest to have someone else take it. Cover-ups may need a few angles.</p>
+          <div class="examples">
+            <div class="ex good"><div class="demo"><img src="ex_good.jpg" alt="Good example: straight-on, bright, in focus"></div>Straight-on, bright, in focus</div>
+            <div class="ex bad"><div class="demo"><img src="ex_bad.jpg" alt="Bad example: mirror selfie, dark, blurry"></div>Mirror selfie, dark, blurry</div>
+          </div>
+          <div class="uploader" id="locUploader">
+            <div> <b>Tap to add location photos</b> or drag &amp; drop<br><small class="muted">up to 5 · jpg/png</small></div>
+            <input type="file" accept="image/*" multiple hidden id="locInput" />
+          </div>
+          <div class="previews" id="locPreviews"></div>
+          <label class="check" style="margin-top:12px"><input type="checkbox" id="locSkip" /> I'll send location photos later</label>
+        </section>
+
+        <!-- budget + timing -->
+        <section class="qstep">
+          <h2>Budget &amp; timing</h2>
+          <div class="field">
+            <label>What's your budget? <span style="font-weight:600;color:var(--muted);font-size:13px">(used for design purposes)</span></label>
+            <input name="budget" inputmode="numeric" placeholder="e.g. $300, or a range like $200-400" />
+          </div>
+          <label class="check" style="margin-bottom:16px"><input type="checkbox" id="budgetNone" /> Not sure / no set budget</label>
+          <div class="field">
+            <label>How soon are you hoping to book?</label>
+            <div class="opt-list" data-radio="timing">
+              <label class="opt"><input type="radio" name="timing" value="ASAP" /> ASAP</label>
+              <label class="opt"><input type="radio" name="timing" value="Within 1 month" /> Within 1 month</label>
+              <label class="opt"><input type="radio" name="timing" value="2 to 3 months" /> 2 to 3 months</label>
+              <label class="opt"><input type="radio" name="timing" value="3+ months" /> 3+ months</label>
+            </div>
+          </div>
+        </section>
+
+        <!-- questions -->
+        <section class="qstep">
+          <h2>Any questions for me?</h2>
+          <div class="field"><textarea name="questions" placeholder="Ask away - pricing, scheduling, anything."></textarea></div>
+          <label class="check"><input type="checkbox" id="qNone" /> No questions right now</label>
+        </section>
+
+        <!-- 13 · review -->
+        <section class="qstep">
+          <h2>Review &amp; send</h2>
+          <p class="q-sub">Quick look before it goes to B. Cake. Tap any answer to edit it.</p>
+          <div class="summary" id="reviewBox"></div>
+          <div class="callout info" id="photoNote" style="margin-top:12px;display:none"></div>
+        </section>
+
+        <div class="nav-row">
+          <button type="button" class="btn btn-ghost" id="backBtn" style="visibility:hidden">← Back</button>
+          <button type="button" class="btn btn-ink" id="nextBtn">Next →</button>
+        </div>
+      </form>
+
+      <!-- success -->
+      <div id="done" style="display:none;text-align:center">
+        <div style="font-size:46px"></div>
+        <h2>Request sent!</h2>
+        <p id="doneMsg">Thanks - your request is on its way to B. Cake. You'll hear back by email.</p>
+        <p><a class="btn btn-primary" href="index.html">Back to the card</a></p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-in">
+    <div>
+      <div style="font-family:var(--font-display);font-weight:700;color:#fff;font-size:18px;display:flex;align-items:center;gap:8px"><img src="logo.png" style="width:26px" alt="" /> Ink by B. Cake</div>
+      <div style="color:#9a93a0;font-size:13px;margin-top:4px">4320 Ball Camp Pike, Suite 6S · Knoxville, TN 37921</div>
+      <div class="foot-links">
+        <a href="https://docs.google.com/document/d/10L4yiTu3bysWRlOUiNJvsqtmBvopwI53ArUv1BGn_O8/edit?tab=t.0" title="terms of service" target="_blank" rel="noopener">Terms of Service</a>
+        · <a href="https://www.flaticon.com/free-icons/socialmedia" title="socialmedia icons" target="_blank" rel="noopener" class="icon-attr">Socialmedia icons created by fauzin idea - Flaticon</a>
+      </div>
+    </div>
+    <div class="socials">
+      <a href="https://instagram.com/inkbybcake" target="_blank" rel="noopener" aria-label="Instagram"><img src="instagram.png" alt="Instagram" onerror="this.outerHTML='IG'" /></a>
+      <a href="https://facebook.com/inkbybcake" target="_blank" rel="noopener" aria-label="Facebook"><img src="facebook.png" alt="Facebook" onerror="this.outerHTML='f'" /></a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+/* ===== CONFIG ===== */
+const FORMSPREE_ID="mlgkapzv";                       // [EDIT-FORMSPREE]
+const CONTACT_EMAIL="inkbybcake@gmail.com";
+const INSTAGRAM="inkbybcake";
+const FORMSPREE_URL="https://formspree.io/f/"+FORMSPREE_ID;
+const formspreeReady=FORMSPREE_ID && FORMSPREE_ID!=="YOUR_FORM_ID";
+
+const form=document.getElementById('inkForm');
+const steps=[...form.querySelectorAll('.qstep')];
+const bar=document.getElementById('bar'), stepLabel=document.getElementById('stepLabel');
+const backBtn=document.getElementById('backBtn'), nextBtn=document.getElementById('nextBtn');
+let i=0;
+
+/* radio option highlight */
+form.querySelectorAll('[data-radio]').forEach(group=>{
+  group.addEventListener('change',()=>{
+    group.querySelectorAll('.opt').forEach(o=>o.classList.toggle('sel',o.querySelector('input').checked));
+  });
+});
+/* conditional warnings */
+form.addEventListener('change',e=>{
+  if(e.target.name==='size'){document.getElementById('xlWarn').style.display=/X-Large/.test(e.target.value)?'flex':'none';}
+  if(e.target.name==='coverup'){document.getElementById('coverWarn').style.display=e.target.value==='Yes'?'flex':'none';}
+});
+
+/* ===== uploaders ===== */
+function makeUploader(zoneId,inputId,prevId,max){
+  const zone=document.getElementById(zoneId), input=document.getElementById(inputId), prev=document.getElementById(prevId);
+  const files=[];
+  function draw(){
+    prev.innerHTML='';
+    files.forEach((f,idx)=>{
+      const d=document.createElement('div');d.className='pv';
+      const im=document.createElement('img');im.src=URL.createObjectURL(f);d.appendChild(im);
+      const b=document.createElement('button');b.type='button';b.textContent='×';b.onclick=()=>{files.splice(idx,1);draw();};
+      d.appendChild(b);prev.appendChild(d);
+    });
+  }
+  function add(list){
+    for(const f of list){ if(files.length>=max){alert('Up to '+max+' photos.');break;} if(f.type.startsWith('image/'))files.push(f); }
+    draw();
+  }
+  zone.onclick=()=>input.click();
+  input.onchange=()=>{add(input.files);input.value='';};
+  zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('drag');});
+  zone.addEventListener('dragleave',()=>zone.classList.remove('drag'));
+  zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('drag');add(e.dataTransfer.files);});
+  return files;
+}
+const refFiles=makeUploader('refUploader','refInput','refPreviews',5);
+const locFiles=makeUploader('locUploader','locInput','locPreviews',5);
+
+/* ===== BODY MAP ===== */
+function bodySVG(side){
+  const tTop=side==='Back'?'Upper back':'Chest';
+  const tBot=side==='Back'?'Lower back':'Stomach';
+  const seat=side==='Back'?'glute':'hip';
+  return `<svg viewBox="0 0 200 380" role="img" aria-label="Body, ${side}">
+    <circle class="bm-region" data-part="Head" cx="100" cy="30" r="24"/>
+    <rect class="bm-region" data-part="Neck" x="88" y="52" width="24" height="18" rx="6"/>
+    <rect class="bm-region" data-part="Left shoulder" x="54" y="72" width="32" height="18" rx="9"/>
+    <rect class="bm-region" data-part="Right shoulder" x="114" y="72" width="32" height="18" rx="9"/>
+    <path class="bm-region" data-part="${tTop}" d="M72 76 h56 v40 q-28 8 -56 0 z"/>
+    <path class="bm-region" data-part="${tBot}" d="M76 118 q24 8 48 0 l-6 46 q-18 6 -36 0 z"/>
+    <ellipse class="bm-region" data-part="Left ${seat}" cx="86" cy="180" rx="18" ry="16"/>
+    <ellipse class="bm-region" data-part="Right ${seat}" cx="114" cy="180" rx="18" ry="16"/>
+    <rect class="bm-region" data-part="Left upper arm" x="46" y="92" width="20" height="56" rx="10"/>
+    <rect class="bm-region" data-part="Right upper arm" x="134" y="92" width="20" height="56" rx="10"/>
+    <rect class="bm-region" data-part="Left forearm" x="42" y="150" width="18" height="54" rx="9"/>
+    <rect class="bm-region" data-part="Right forearm" x="140" y="150" width="18" height="54" rx="9"/>
+    <circle class="bm-region" data-part="Left hand" cx="51" cy="218" r="12"/>
+    <circle class="bm-region" data-part="Right hand" cx="149" cy="218" r="12"/>
+    <rect class="bm-region" data-part="Left thigh" x="76" y="196" width="22" height="64" rx="11"/>
+    <rect class="bm-region" data-part="Right thigh" x="102" y="196" width="22" height="64" rx="11"/>
+    <rect class="bm-region" data-part="Left calf / shin" x="78" y="262" width="18" height="60" rx="9"/>
+    <rect class="bm-region" data-part="Right calf / shin" x="104" y="262" width="18" height="60" rx="9"/>
+    <rect class="bm-region" data-part="Left foot" x="72" y="324" width="24" height="15" rx="6"/>
+    <rect class="bm-region" data-part="Right foot" x="104" y="324" width="24" height="15" rx="6"/>
+  </svg>`;
+}
+function subsFor(part){
+  const p=part.toLowerCase();
+  if(p.includes('forearm')||p.includes('upper arm'))return['Inner','Outer'];
+  if(p.includes('thigh'))return['Front','Back','Inner','Outer'];
+  if(p.includes('calf')||p.includes('shin'))return['Front','Back','Side'];
+  if(p.includes('hand'))return['Top','Palm'];
+  if(p.includes('foot'))return['Top','Side'];
+  if(p.includes('neck'))return['Side','Front','Back'];
+  if(p.includes('shoulder'))return['Front','Back','Top'];
+  if(p.includes('chest')||p.includes('stomach'))return['Center','Left','Right'];
+  return[];
+}
+let bmSide='Front';
+const selected=[];   // {side, part, subs:Set}
+const bmFigure=document.getElementById('bmFigure'), bmReadout=document.getElementById('bmReadout');
+function keyOf(side,part){return side+'|'+part;}
+function findSel(side,part){return selected.find(s=>s.side===side&&s.part===part);}
+function drawFigure(){
+  bmFigure.innerHTML=bodySVG(bmSide);
+  bmFigure.querySelectorAll('.bm-region').forEach(r=>{
+    if(findSel(bmSide,r.dataset.part))r.classList.add('sel');
+    r.addEventListener('click',()=>toggleRegion(bmSide,r.dataset.part));
+  });
+}
+function toggleRegion(side,part){
+  const ex=findSel(side,part);
+  if(ex){selected.splice(selected.indexOf(ex),1);}
+  else{selected.push({side,part,subs:new Set()});}
+  drawFigure();drawReadout();
+}
+function drawReadout(){
+  if(!selected.length){bmReadout.innerHTML='<span class="none">No location selected yet - tap the body above.</span>';return;}
+  bmReadout.innerHTML='';
+  selected.forEach(sel=>{
+    const row=document.createElement('div');row.style.marginBottom='10px';
+    const subs=subsFor(sel.part);
+    let sub='';
+    if(subs.length){
+      sub='<div class="subloc">'+subs.map(s=>`<label class="check" style="font-size:13px"><input type="checkbox" data-sub="${s}" ${sel.subs.has(s)?'checked':''}/> ${s}</label>`).join('')+'</div>';
+    }
+    row.innerHTML=`<b>${sel.side} · ${sel.part}</b> <button type="button" class="chip" style="background:#eee;color:#a33;padding:2px 8px;margin-left:6px">remove</button>${sub}`;
+    row.querySelector('button').onclick=()=>toggleRegion(sel.side,sel.part);
+    row.querySelectorAll('[data-sub]').forEach(cb=>cb.onchange=()=>{ cb.checked?sel.subs.add(cb.dataset.sub):sel.subs.delete(cb.dataset.sub); });
+    bmReadout.appendChild(row);
+  });
+}
+document.querySelectorAll('.bm-tab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.bm-tab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');bmSide=t.dataset.side;drawFigure();
+}));
+drawFigure();
+function locationString(){
+  return selected.map(s=>{const sub=[...s.subs];return s.side+' '+s.part+(sub.length?' ('+sub.join(', ')+')':'');}).join('  |  ');
+}
+
+/* ===== step engine ===== */
+const val=n=>form.elements[n]?form.elements[n].value.trim():'';
+let returnToReview=false;
+function show(n){
+  steps.forEach((s,k)=>s.classList.toggle('show',k===n));
+  i=n;
+  bar.style.width=((n+1)/steps.length*100)+'%';
+  stepLabel.textContent='Step '+(n+1)+' of '+steps.length;
+  backBtn.style.visibility=n===0?'hidden':'visible';
+  nextBtn.textContent=n===steps.length-1?'Send request ':'Next →';
+  if(n===steps.length-1)buildReview();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function checked(name){const el=form.querySelector('input[name="'+name+'"]:checked');return el?el.value:'';}
+function validate(n){
+  switch(n){
+    case 0: if(!checked('consult')){alert('Please choose Yes or No.');return false;} break;
+    case 1: if(!val('first')||!val('last')){alert('Please enter your first and last name.');return false;} break;
+    case 2: if(!val('phone')){alert('Please enter a phone number.');return false;} break;
+    case 3: if(!val('email')||!form.elements['email'].checkValidity()){alert('Please enter a valid email.');return false;} break;
+    case 4: if(!val('idea')){alert('Please describe your idea.');return false;} break;
+    case 5: if(refFiles.length===0 && !document.getElementById('refSkip').checked){alert('Add a reference photo, or check the box if you have none.');return false;} break;
+    case 6: if(!checked('color')){alert('Please choose a coloring option.');return false;} break;
+    case 7: if(!checked('size')){alert('Please choose a size.');return false;} break;
+    case 8: if(selected.length===0){alert('Tap at least one spot on the body.');return false;} break;
+    case 9: if(!checked('coverup')){alert('Please choose Yes or No.');return false;} break;
+    case 10: if(locFiles.length===0 && !document.getElementById('locSkip').checked){alert('Add a location photo, or check the box to send later.');return false;} break;
+    case 11: if(!val('budget') && !document.getElementById('budgetNone').checked){alert('Enter a budget, or check "not sure".');return false;}
+             if(!checked('timing')){alert('Please choose how soon you are hoping to book.');return false;} break;
+    case 12: if(!val('questions') && !document.getElementById('qNone').checked){alert('Type a question, or check "no questions".');return false;} break;
+  }
+  return true;
+}
+backBtn.onclick=()=>{ returnToReview=false; if(i>0)show(i-1); };
+nextBtn.onclick=()=>{ if(!validate(i))return; if(returnToReview){returnToReview=false;show(steps.length-1);} else if(i<steps.length-1)show(i+1); else submit(); };
+
+/* ===== review + submit ===== */
+function gather(){
+  return {
+    Consultation:checked('consult'),
+    Name:val('first')+' '+val('last'),
+    Phone:val('phone'),
+    Email:val('email'),
+    Idea:val('idea'),
+    ReferencePhotos:(refFiles.length||0)+(document.getElementById('refSkip').checked?' (none)':' attached'),
+    Coloring:checked('color'),
+    Budget:document.getElementById('budgetNone').checked?'Not sure':val('budget'),
+    Timing:checked('timing'),
+    Size:checked('size'),
+    ApproxSize:(function(){var l=(document.getElementById('length')||{}).value||'',w=(document.getElementById('width')||{}).value||'';return (l||w)?((l||'?')+' x '+(w||'?')+' in'):'Not specified';})(),
+    Location:locationString(),
+    CoverUp:checked('coverup'),
+    LocationPhotos:(locFiles.length||0)+(document.getElementById('locSkip').checked?' (sending later)':' attached'),
+    Questions:document.getElementById('qNone').checked?'None':val('questions')
+  };
+}
+function buildReview(){
+  const d=gather();
+  const __box=document.getElementById('reviewBox');__box.className='review-pills';__box.innerHTML='';const __esc=x=>String(x).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));const __pretty=k=>k.replace(/([a-z])([A-Z])/g,'$1 $2');const __step={Consultation:0,Name:1,Phone:2,Email:3,Idea:4,ReferencePhotos:5,Coloring:6,Size:7,ApproxSize:7,Location:8,CoverUp:9,LocationPhotos:10,Budget:11,Timing:11,Questions:12};Object.entries(d).forEach(([k,v])=>{const p=document.createElement('span');p.className='rpill';p.innerHTML='<span class="k">'+__pretty(k)+'</span><span class="v">'+__esc(v||'-')+'</span>';const __i=__step[k];if(__i!=null){p.classList.add('editable');p.title='Tap to edit';p.onclick=()=>{returnToReview=true;show(__i);};}__box.appendChild(p);});
+  const photos=refFiles.length+locFiles.length;
+  const note=document.getElementById('photoNote');
+  if(photos>0){note.style.display='flex';note.innerHTML=' <span>You added <b>'+photos+' photo(s)</b>. </span>';}
+  else{note.style.display='none';}
+}
+function submit(){
+  const d=gather();
+  const lines=['NEW GET INKED REQUEST','----------------------'].concat(Object.entries(d).map(([k,v])=>k+': '+(v||'-')));
+  const summary=lines.join('\n');
+  const payload=Object.assign({_subject:'New Get Inked request - '+d.Name},d);
+  const photos=refFiles.length+locFiles.length;
+  const doneMsg=photos>0
+    ? 'Thanks! Your details are on their way and your request is under review. I will reach out with any extra questions and booking instructions' 
+    : 'Thanks! Your requests are on their way and your request is under review. I will reach out with any extra questions and booking instructions';
+  if(!formspreeReady){ fallback(summary,doneMsg); return; }
+  nextBtn.textContent='Sending…';nextBtn.disabled=true;
+  const fd=new FormData();                                 // multipart so the uploaded photos go to Formspree
+  fd.append('_subject','New Get Inked request - '+d.Name);
+  Object.entries(d).forEach(([k,v])=>fd.append(k, v==null?'':String(v)));
+  refFiles.forEach((f,n)=>fd.append('reference_photo_'+(n+1), f, f.name));
+  locFiles.forEach((f,n)=>fd.append('location_photo_'+(n+1), f, f.name));
+  fetch(FORMSPREE_URL,{method:'POST',headers:{Accept:'application/json'},body:fd})
+    .then(r=>{ if(r.ok)succeed(doneMsg); else throw new Error('bad'); })
+    .catch(()=>fallback(summary,doneMsg))
+    .finally(()=>{nextBtn.textContent='Send request ';nextBtn.disabled=false;});
+}
+function succeed(msg){
+  form.style.display='none';
+  document.getElementById('done').style.display='block';
+  document.getElementById('doneMsg').innerHTML=msg;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function fallback(summary,msg){
+  const mail='mailto:'+encodeURIComponent(CONTACT_EMAIL)+'?subject='+encodeURIComponent('Get Inked request')+'&body='+encodeURIComponent(summary);
+  succeed(msg+'<br><br>If your email did not open, <a href="'+mail+'">click here to send</a> or DM <a href="https://instagram.com/'+INSTAGRAM+'" target="_blank" rel="noopener">@'+INSTAGRAM+'</a>.');
+  window.location.href=mail;
+}
+
+show(0);
+</script>
+</body>
+</html>

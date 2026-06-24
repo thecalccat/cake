@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Location &amp; Events · Ink by B. Cake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<style>
+.loc-grid{display:grid;grid-template-columns:1fr .92fr;gap:26px;align-items:start;}
+@media(max-width:820px){.loc-grid{grid-template-columns:1fr;}.map-side{order:-1;}}
+.map-side{position:sticky;top:84px;display:flex;flex-direction:column;gap:14px;}
+@media(max-width:820px){.map-side{position:static;}}
+.map-embed{width:100%;aspect-ratio:4/3;border:0;border-radius:16px;box-shadow:var(--shadow-sm);background:#eee;}
+.info-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+.info-card h3{margin:0 0 6px;}
+.event{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow-sm);display:flex;gap:14px;margin-bottom:14px;}
+.event .date{flex:0 0 64px;text-align:center;background:var(--grad-card);border-radius:12px;padding:8px 4px;font-family:var(--font-display);}
+.event .date .m{font-size:12px;font-weight:700;text-transform:uppercase;}
+.event .date .d{font-size:24px;font-weight:700;line-height:1;}
+.event h3{margin:0 0 3px;font-size:18px;}
+.event .where{color:var(--muted);font-weight:700;font-size:14px;margin-bottom:6px;}
+.event .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.event .links a{font-size:13px;background:var(--cloud);padding:6px 12px;border-radius:999px;}
+.event .links a.intake{background:var(--red);color:#fff;}
+.directions{display:inline-block;margin-top:4px;}
+</style>
+</head>
+<body class="themed">
+<div class="toprule"></div>
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><img src="logo.png" alt="" />B. Cake</a>
+    <button class="nav-toggle" aria-label="Menu"></button>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="get-inked.html" class="ink">Get Inked</a>
+      <a href="aftercare.html">Aftercare</a>
+      <a href="merch.html">Merch</a>
+      <a href="location.html" class="active">Location &amp; Events</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+  <div class="page-head">
+    <div class="eyebrow">Come find me</div>
+    <h1>Location &amp; Events</h1>
+  </div>
+
+  <div class="loc-grid">
+    <!-- EVENTS -->
+    <section>
+      <h2 style="margin-top:0">Upcoming events</h2>
+      <!-- [EDIT-EVENTS] Edit these. Convention events can include an "intake form" link. -->
+      <div class="event">
+        <div class="date"><div class="m">Aug</div><div class="d">14-16</div></div>
+        <div>
+          <h3>Knoxville Tattoo Arts Festival</h3>
+          <div class="where">Worlds Fair Exhibition Hall · Booth TBD</div>
+          <p style="margin:0">Come say hi! </p>
+          <div class="links">
+            <a href="https://www.eventbrite.com/e/14th-knoxville-tattoo-convention-tickets-1985140841696?aff=oddtdtcreator" target="_blank" rel="noopener">Event info ↗</a>
+            <!-- <a class="intake" href="get-inked.html">Convention intake form →</a> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="event">
+        <div class="date"><div class="m">MONTH</div><div class="d">DATE</div></div>
+        <div>
+          <h3>Flash Day at the Studio</h3>
+          <div class="where">4320 Ball Camp Pike, Suite 6S</div>
+          <p style="margin:0">details</p>
+          <div class="links">
+            <a href="https://instagram.com/inkbybcake" target="_blank" rel="noopener">Details on IG ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <div class="date"><div class="m">Month</div><div class="d">day</div></div>
+        <div>
+          <h3>Event</h3>
+          <div class="where">details</div>
+          <p style="margin:0">Follow along on Instagram for the announcement.</p>
+        </div>
+      </div> -->
+
+      <p class="muted" style="font-size:13px">More events added all the time - follow <a href="https://instagram.com/inkbybcake" target="_blank" rel="noopener">@inkbybcake</a> for the latest.</p>
+    </section>
+
+    <!-- MAP + STUDIO INFO (sticky on desktop) -->
+    <aside class="map-side">
+      <iframe class="map-embed" title="Studio map" loading="lazy"
+        src="https://www.google.com/maps?q=4320+Ball+Camp+Pike+Suite+6S+Knoxville+TN+37921&output=embed"></iframe>
+      <div class="info-card">
+        <h3>Silly Goose Studio located in The House of Hex</h3>
+        <p style="margin:.2em 0"><b>4320 Ball Camp Pike, Suite 6S</b><br>Knoxville, TN 37921</p>
+        <a class="directions" href="https://www.google.com/maps/dir/?api=1&destination=4320+Ball+Camp+Pike+Suite+6S+Knoxville+TN+37921" target="_blank" rel="noopener">Get directions ↗</a>
+        <h3 style="margin-top:14px">Hours</h3>
+        <p style="margin:.2em 0">Tue-Sat: 12pm - 8pm<br>Sun-Mon: Closed</p>
+        <h3 style="margin-top:14px">Find me online</h3>
+        <p style="margin:.2em 0">
+          <a href="https://instagram.com/inkbybcake" target="_blank" rel="noopener">@inkbybcake</a> ·
+          <a href="https://facebook.com/inkbybcake" target="_blank" rel="noopener">Facebook</a>
+        </p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-in">
+    <div>
+      <div style="font-family:var(--font-display);font-weight:700;color:#fff;font-size:18px;display:flex;align-items:center;gap:8px"><img src="logo.png" style="width:26px" alt="" /> Ink by B. Cake</div>
+      <div style="color:#9a93a0;font-size:13px;margin-top:4px">4320 Ball Camp Pike, Suite 6S · Knoxville, TN 37921</div>
+      <div class="foot-links">
+        <a href="https://docs.google.com/document/d/10L4yiTu3bysWRlOUiNJvsqtmBvopwI53ArUv1BGn_O8/edit?tab=t.0" title="terms of service" target="_blank" rel="noopener">Terms of Service</a>
+        · <a href="https://www.flaticon.com/free-icons/socialmedia" title="socialmedia icons" target="_blank" rel="noopener" class="icon-attr">Socialmedia icons created by fauzin idea - Flaticon</a>
+      </div>
+    </div>
+    <div class="socials">
+      <a href="https://instagram.com/inkbybcake" target="_blank" rel="noopener" aria-label="Instagram"><img src="instagram.png" alt="Instagram" onerror="this.outerHTML='IG'" /></a>
+      <a href="https://facebook.com/inkbybcake" target="_blank" rel="noopener" aria-label="Facebook"><img src="facebook.png" alt="Facebook" onerror="this.outerHTML='f'" /></a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

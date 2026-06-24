@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gallery · Ink by B. Cake</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<style>
+.gallery-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-bottom:22px;}
+.filter-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+.fchip{padding:9px 16px;border-radius:999px;background:var(--cloud);border:1.5px solid var(--line);font-weight:800;font-size:14px;color:var(--ink-soft);}
+.fchip.active{background:var(--grad-card);color:var(--ink);border-color:transparent;}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;}
+.gal-grid .tile{cursor:pointer;}
+.gal-grid .tile .thumb{aspect-ratio:3/4;position:relative;overflow:hidden;}
+.gal-grid .tile .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.ba-badge{position:absolute;top:8px;left:8px;background:rgba(20,20,22,.82);color:#fff;font-weight:800;font-size:12px;padding:4px 10px;border-radius:999px;pointer-events:none;}
+.cover-flip{perspective:1000px;}
+.cover-flip .flip-inner{position:relative;width:100%;aspect-ratio:3/4;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.3,.7,.3,1);}
+.cover-flip.flipped .flip-inner{transform:rotateY(180deg);}
+.cover-flip .flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;}
+.cover-flip .flip-face img{width:100%;height:100%;object-fit:cover;display:block;}
+.cover-flip .flip-face.back{transform:rotateY(180deg);}
+.hint-line{text-align:center;color:var(--muted);font-size:13px;margin-top:14px;}
+.ig-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%;color:var(--pink-deep);font-weight:800;text-align:center;padding:10px;}
+.ig-ph small{color:var(--muted);font-weight:700;}
+</style>
+</head>
+<body class="themed">
+<div class="toprule"></div>
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><img src="logo.png" alt="" />B. Cake</a>
+    <button class="nav-toggle" aria-label="Menu"></button>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="get-inked.html" class="ink">Get Inked</a>
+      <a href="aftercare.html">Aftercare</a>
+      <a href="merch.html">Merch</a>
+      <a href="location.html">Location &amp; Events</a>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+  <div class="page-head">
+    <div class="eyebrow"></div>
+    <h1>Gallery</h1>
+    <p>Browse by category, then tap any piece to swipe through full-size.</p>
+  </div>
+
+  <div class="gallery-controls">
+    <label class="muted" for="catSelect" style="font-weight:800">Show:</label>
+    <select id="catSelect" style="width:auto;min-width:200px">
+      <option value="color">Color</option>
+      <option value="blackgrey">Black &amp; Gray</option>
+      <option value="coverups">Cover-ups</option>
+      <option value="available">Available Designs</option>
+    </select>
+    <div class="filter-chips" id="filterChips"></div>
+  </div>
+
+  <div class="gal-grid" id="galGrid"></div>
+  <div class="hint-line" id="emptyHint"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="foot-in">
+    <div>
+      <div style="font-family:var(--font-display);font-weight:700;color:#fff;font-size:18px;display:flex;align-items:center;gap:8px"><img src="logo.png" style="width:26px" alt="" /> Ink by B. Cake</div>
+      <div style="color:#9a93a0;font-size:13px;margin-top:4px">4320 Ball Camp Pike, Suite 6S · Knoxville, TN 37921</div>
+      <div class="foot-links">
+        <a href="https://docs.google.com/document/d/10L4yiTu3bysWRlOUiNJvsqtmBvopwI53ArUv1BGn_O8/edit?tab=t.0" title="terms of service" target="_blank" rel="noopener">Terms of Service</a>
+        · <a href="https://www.flaticon.com/free-icons/socialmedia" title="socialmedia icons" target="_blank" rel="noopener" class="icon-attr">Socialmedia icons created by fauzin idea - Flaticon</a>
+      </div>
+    </div>
+    <div class="socials">
+      <a href="https://instagram.com/inkbybcake" target="_blank" rel="noopener" aria-label="Instagram"><img src="instagram.png" alt="Instagram" onerror="this.outerHTML='IG'" /></a>
+      <a href="https://facebook.com/inkbybcake" target="_blank" rel="noopener" aria-label="Facebook"><img src="facebook.png" alt="Facebook" onerror="this.outerHTML='f'" /></a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+/* -------- Gallery config --------
+   Add photos to a "gallery" folder named like:  color-1.jpg, color-2.jpg,
+   blackgrey-1.jpg, available-1.jpg ... (jpg or png).
+   Cover-ups are shown after-first: coverups-1a.jpg (after) + coverups-1b.jpg (before). */
+const CATS={
+  color:{label:'Color', count:23},
+  blackgrey:{label:'Black & Gray', count:20},
+  coverups:{label:'Cover-ups', count:8},
+  available:{label:'Available Designs', count:27}
+};
+const labels={color:'Color',blackgrey:'Black & Gray',coverups:'Cover-ups',available:'Available Designs'};
+const grid=document.getElementById('galGrid'), sel=document.getElementById('catSelect'),
+  chips=document.getElementById('filterChips'), emptyHint=document.getElementById('emptyHint');
+let current='color';
+
+// filter chips mirror the select
+Object.keys(CATS).forEach(k=>{
+  const b=document.createElement('button');b.className='fchip';b.dataset.cat=k;b.textContent=CATS[k].label;
+  b.onclick=()=>{current=k;sel.value=k;syncChips();render();};
+  chips.appendChild(b);
+});
+function syncChips(){[...chips.children].forEach(c=>c.classList.toggle('active',c.dataset.cat===current));}
+sel.onchange=()=>{current=sel.value;syncChips();render();};
+
+function igCardHTML(){return '<div class="ig-ph"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#d64f9b" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.2" fill="#d64f9b" stroke="none"/></svg><span>See more on Instagram</span><small>@inkbybcake</small></div>';}
+function wireIg(tile){tile.style.cursor='pointer';tile.onclick=()=>window.open('https://instagram.com/inkbybcake','_blank','noopener');}
+function render(){
+  grid.innerHTML='';emptyHint.textContent='';
+  const cfg=CATS[current];
+  if(current==='coverups'){ renderCoverups(cfg); return; }
+  const loaded=[];                         // {src,cap} for lightbox
+  for(let i=1;i<=cfg.count;i++){
+    const src='gallery/'+current+'-'+i+'.jpg';
+    const tile=document.createElement('div');tile.className='tile';
+    const thumb=document.createElement('div');thumb.className='thumb';
+    thumb.innerHTML=igCardHTML();tile.title='gallery/'+current+'-'+i+'.jpg';wireIg(tile);
+    tile.appendChild(thumb);grid.appendChild(tile);
+    // try to load real image
+    const img=new Image();
+    img.onload=()=>{
+      const myIndex=loaded.length;
+      loaded.push({src:src,cap:cfg.label+' · '+i});
+      thumb.style.padding='0';thumb.innerHTML='';
+      const el=document.createElement('img');el.src=src;el.alt=cfg.label;
+      thumb.appendChild(el);
+      tile.onclick=()=>window.Lightbox.open(loaded,myIndex);
+    };
+    img.src=src;
+  }
+}
+
+/* Cover-ups are AFTER/BEFORE flip cards: the front is coverups-Na.jpg (after);
+   tapping spins the card to coverups-Nb.jpg (before) and back. */
+function renderCoverups(cfg){
+  for(let i=1;i<=cfg.count;i++){
+    const after ='gallery/coverups-'+i+'a.jpg';   // a = after (front, shown first)
+    const before='gallery/coverups-'+i+'b.jpg';   // b = before (back)
+    const tile=document.createElement('div');tile.className='tile cover-flip';
+    const thumb=document.createElement('div');thumb.className='thumb';
+    thumb.innerHTML=igCardHTML();tile.title='coverups-'+i+'a.jpg / -'+i+'b.jpg';wireIg(tile);
+    tile.appendChild(thumb);grid.appendChild(tile);
+    const aimg=new Image();
+    aimg.onload=()=>{
+      tile.innerHTML='';
+      const inner=document.createElement('div');inner.className='flip-inner';
+      const front=document.createElement('div');front.className='flip-face front';
+      const fimg=document.createElement('img');fimg.src=after;fimg.alt='Cover-up '+i+' after';
+      const fbadge=document.createElement('span');fbadge.className='ba-badge';fbadge.textContent='After';
+      front.appendChild(fimg);front.appendChild(fbadge);
+      const back=document.createElement('div');back.className='flip-face back';
+      const backImg=document.createElement('img');backImg.alt='Cover-up '+i+' before';
+      const bbadge=document.createElement('span');bbadge.className='ba-badge';bbadge.textContent='Before';
+      back.appendChild(backImg);back.appendChild(bbadge);
+      inner.appendChild(front);inner.appendChild(back);tile.appendChild(inner);
+      let beforeOk=false;
+      const bimg=new Image();
+      bimg.onload=()=>{ beforeOk=true; backImg.src=before; fbadge.textContent='After (tap)'; bbadge.textContent='Before (tap)'; };
+      bimg.src=before;
+      tile.onclick=()=>{ if(beforeOk) tile.classList.toggle('flipped'); };
+    };
+    aimg.src=after;
+  }
+}
+syncChips();render();
+</script>
+</body>
+</html>
