@@ -47,8 +47,8 @@
     <p>Stickers, prints, and flash you can grab at the studio.</p>
   </div>
 
-  <!-- <div class="note-banner"> Merch is <b>available in person only</b> - come say hi at the studio to grab yours!</div> -->
-  <div class="note-banner"> Merch is <b>coming soon!</b> </div>
+  <div class="note-banner"> Merch is <b>available in person only</b> - come say hi at the studio to grab yours!</div>
+  <!-- <div class="note-banner"> Merch is coming soon! </div> -->
 
   <!-- [EDIT-MERCH] Update names/prices and drop photos in a "merch" folder (sticker.jpg, print.jpg, …) -->
   <div class="merch-grid" id="merchGrid"></div>
@@ -75,20 +75,48 @@
 <script src="site.js"></script>
 <script>
 const MERCH=[
-  // {key:'sticker', name:'Sticker Pack',     price:'$'},
-  // {key:'print',   name:'Art Print',        price:'$'},
-  // {key:'flash',   name:'Flash Sheet',      price:'$'},
+   {key:'print-fish', name:'Art Print',     price:'$25, 2 for $40'},
+   {key:'print-danny',   name:'Art Print',        price:'$20'},
+   {key:'print-smoke',   name:'Art Print',      price:'$25, 2 for $40'},
+   {key:'stickers',   name:'Stickers',      price:'$2 or 3 for $5 One free with tattoo'},
 ];
 const grid=document.getElementById('merchGrid');
+/* Accepts video or image. Drop merch/<key>.mp4, .gif, .jpg, .png or .webp -
+   the tile auto-detects and uses whichever exists (mp4 preferred, then gif, then still image).
+   Or force one by setting ext:'mp4' on the item below. */
+const MEDIA_EXT=['mp4','webm','gif','jpg','jpeg','png','webp'];
+function fillThumb(thumb,badge,node,name){
+  thumb.style.padding='0';thumb.innerHTML='';if(badge)thumb.appendChild(badge);
+  node.alt=name||'';node.style.width='100%';node.style.height='100%';node.style.objectFit='cover';node.style.display='block';
+  thumb.appendChild(node);
+}
+function loadMedia(m,thumb,badge){
+  const list=m.ext?[m.ext]:MEDIA_EXT;
+  (function tryNext(i){
+    if(i>=list.length)return;                     // nothing found, keep placeholder
+    const ext=list[i].toLowerCase(), src='merch/'+m.key+'.'+ext;
+    if(ext==='mp4'||ext==='webm'){
+      const v=document.createElement('video');
+      v.muted=true;v.loop=true;v.autoplay=true;v.playsInline=true;
+      v.setAttribute('muted','');v.setAttribute('playsinline','');v.setAttribute('preload','metadata');
+      v.onloadeddata=()=>{fillThumb(thumb,badge,v,m.name);const p=v.play();if(p&&p.catch)p.catch(()=>{});};
+      v.onerror=()=>tryNext(i+1);
+      v.src=src;
+    }else{
+      const img=new Image();
+      img.onload=()=>fillThumb(thumb,badge,img,m.name);
+      img.onerror=()=>tryNext(i+1);
+      img.src=src;
+    }
+  })(0);
+}
 MERCH.forEach(m=>{
   const c=document.createElement('div');c.className='tile merch';
-  c.innerHTML='<div class="thumb"><span class="badge">In-stock</span> '+m.name+'<br><small>merch/'+m.key+'.jpg</small></div>'+
+  c.innerHTML='<div class="thumb"><span class="badge">In-stock</span> '+m.name+'<br><small>merch/'+m.key+'</small></div>'+
     '<div class="body"><h3>'+m.name+'</h3><span class="price">'+m.price+'</span></div>';
   grid.appendChild(c);
-  const img=new Image();img.onload=()=>{const t=c.querySelector('.thumb');const badge=t.querySelector('.badge');
-    t.style.padding='0';t.innerHTML='';t.appendChild(badge);
-    const el=document.createElement('img');el.src=img.src;el.alt=m.name;el.style.width='100%';el.style.height='100%';el.style.objectFit='cover';t.appendChild(el);};
-  img.src='merch/'+m.key+'.jpg';
+  const thumb=c.querySelector('.thumb'), badge=thumb.querySelector('.badge');
+  loadMedia(m,thumb,badge);
 });
 
 </script>
