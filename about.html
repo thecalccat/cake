@@ -22,6 +22,23 @@
 .lead{font-size:19px;color:var(--ink-soft);}
 .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
 .pill{background:var(--grad-card-soft);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-weight:800;font-size:13px;}
+/* awards & conventions */
+.awards{margin-top:56px;}
+.awards h2{font-size:30px;margin:0 0 6px;}
+.awards .sub{color:var(--muted);margin:0 0 24px;}
+.award-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+@media(max-width:860px){.award-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.award-grid{grid-template-columns:1fr;}}
+.award-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);display:block;color:inherit;text-decoration:none;}
+.award-card .thumb{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--grad-card-soft);display:grid;place-items:center;color:var(--ink-soft);font-weight:700;}
+.award-card .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+.award-card .body{padding:14px 16px 16px;}
+.place{display:inline-block;border-radius:999px;padding:4px 12px;font-weight:800;font-size:13px;margin:0 6px 6px 0;}
+.place.p1{background:linear-gradient(160deg,#ffe49c,#f4c945);color:var(--ink);}
+.place.p2{background:linear-gradient(160deg,#f3f3f5,#cfd0d6);color:var(--ink);}
+.place.p3{background:linear-gradient(160deg,#f6d2b4,#d99a6c);color:var(--ink);}
+.award-card .cat{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--ink);margin-top:4px;}
+.award-card .loc{color:var(--muted);font-size:14px;}
 </style>
 </head>
 <body class="themed">
@@ -81,6 +98,40 @@
       <div class="photoslot" id="ap3"> </div>
     </div>
   </div>
+
+  <!-- ================= AWARDS & CONVENTIONS ================= -->
+  <!-- [EDIT-IMAGES] Replace each REPLACE-ME filename below with the matching photo
+       from the gallery folder (e.g. gallery/color-12.jpg). Until then a placeholder box shows. -->
+  <section class="awards">
+    <h2>Awards &amp; Conventions</h2>
+    <p class="sub">A few pieces I'm proud to have brought home hardware for.</p>
+    <div class="award-grid">
+        <a class="award-card" href="gallery.html">
+          <div class="thumb"><img src="gallery/color-26.jpg" alt="Award-winning color tattoo, Living Arts Tattoo Convention 2026" onerror="this.outerHTML='Image coming soon'" /></div>
+          <div class="body">
+            <span class="place p1">1st Place &middot; Medium Color</span><span class="place p1">1st Place &middot; Wildlife Color</span>
+            <div class="cat">2026 Living Arts Tattoo Convention</div>
+            <div class="loc">Knoxville, TN</div>
+          </div>
+        </a>
+        <a class="award-card" href="gallery.html">
+          <div class="thumb"><img src="gallery/color-8.jpg" alt="Award-winning small color tattoo, Villain Arts Omaha 2026" onerror="this.outerHTML='Image coming soon'" /></div>
+          <div class="body">
+            <span class="place p2">2nd Place &middot; Female Small Color</span>
+            <div class="cat">2026 Villain Arts Omaha Tattoo Convention</div>
+            <div class="loc">Omaha, NE</div>
+          </div>
+        </a>
+        <a class="award-card" href="gallery.html">
+          <div class="thumb"><img src="gallery/color-22.jpg" alt="Award-winning large color tattoo, Villain Arts Omaha 2026" onerror="this.outerHTML='Image coming soon'" /></div>
+          <div class="body">
+            <span class="place p3">3rd Place &middot; Large Color</span>
+            <div class="cat">2026 Villain Arts Omaha Tattoo Convention</div>
+            <div class="loc">Omaha, NE</div>
+          </div>
+        </a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
